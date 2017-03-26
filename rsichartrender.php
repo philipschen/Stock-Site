@@ -9,7 +9,7 @@ $username = "root";
 $password = "";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, "testdb");
+$conn = new mysqli($servername, $username, $password, "StockDBPDO");
 
 // Check connection
 if ($conn->connect_error) {
@@ -17,7 +17,7 @@ if ($conn->connect_error) {
 }
 //echo "Connected successfully";
 
-$sql = "SELECT id, price FROM testtable";
+$sql = "SELECT closingprice FROM historic";
 if ($conn->query($sql) === TRUE) {
 } else {
     //echo "Error: " . $sql . "<br>" . $conn->error;
@@ -27,10 +27,11 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while ($row = $result->fetch_assoc()) {
-        array_push($temp,$row["price"]);
+        array_push($temp,$row["closingprice"]);
     }
 }
 $conn->close();
+
 
 
 // RSI ALGO
@@ -65,15 +66,27 @@ for ($i = 14; $i < count($gl); $i++) {
         array_push($rs, $tag/$tal);
 }
 //rsi
+/*
 for ($i = 1; $i <= count($rs); $i++) {
     array_push($rsi, 100 - 100 / (1 + $rs[$i-1]));
 }
-for ($i = 1; $i <= count($rs); $i++) {
+*/
+$timecount = 100;
+for ($i = count($rs)-1; $i > 0 ; $i--) {
+    if ($timecount >= 0){
+        array_push($rsi, 100 - 100 / (1 + $rs[$i]));
+        $timecount -= 1;
+    }
+}
+
+for ($i = 1; $i <= count($rsi); $i++) {
     array_push($r1, 30);
 }
-for ($i = 1; $i <= count($rs); $i++) {
+for ($i = 1; $i <= count($rsi); $i++) {
     array_push($r2, 70);
 }
+
+
 
 
 // RSI Graph
@@ -84,11 +97,11 @@ $myData->addPoints($r2, "sat3");
 $myImage = new pImage(500, 300, $myData);
 $myImage->setFontProperties(array(
     "FontName" => "pChart2.1.4/fonts/GeosansLight.ttf",
-    "FontSize" => 12));
+    "FontSize" => 10));
 $myImage->setGraphArea(25,25, 475,275);
 
 $AxisBoundaries = array(0=>array("Min"=>0,"Max"=>100));
-$labelskip = 10/1; // values = 1000, hours = 24
+$labelskip = 9/1; // values = 1000, hours = 24
 $scaleSettings = array("LabelSkip"=>$labelskip,"Mode"=>SCALE_MODE_MANUAL,"ManualScale"=>$AxisBoundaries);
 $myImage->drawScale($scaleSettings);
 $myImage->drawLineChart(array("DisplayValues"=>FALSE,"DisplayColor"=>DISPLAY_AUTO));
