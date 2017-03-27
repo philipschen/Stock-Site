@@ -11,11 +11,14 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "StockDBPDO";
-$id = "AAPL";
-$stockname = "Apple Computer, Inc.";
+$id = array("AAPL", "AIG", "AMD", "AZO", "BP", "CI", "DB", "EA", "F", "FB", "FDX");
+$stockname = array("Apple Computer, Inc.","American International Group Inc", "Advanced Micro Devices, Inc.",
+	"AutoZone, Inc.", "BP plc (ADR)", "CIGNA Corporation", "Deutsche Bank AG (USA)", "Electronic Arts Inc.",
+	"Ford Motor Company", "Facebook Inc", "FedEx Corporation");
 
 $row = 1;
-if (($handle = fopen("AAPL.csv", "r")) !== FALSE) {
+for ($i = 0; $i < count($id); $i++){
+if (($handle = fopen("$id[$i].csv", "r")) !== FALSE) {
     while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
         $num = count($data);
         echo "<p> $num fields in line $row: <br /></p>\n";
@@ -35,7 +38,7 @@ if (($handle = fopen("AAPL.csv", "r")) !== FALSE) {
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql = "INSERT INTO Historic (tickerid, stockname, date, closingprice, volume)
-    VALUES ('$id', '$stockname', '$dat', $data[1], $data[5])";
+    VALUES ('$id[$i]', '$stockname[$i]', '$dat', $data[1], $data[5])";
     // use exec() because no results are returned
     $conn->exec($sql);
     echo "New record created successfully";
@@ -49,6 +52,7 @@ $conn = null;
 
     }
     fclose($handle);
+}
 }
 ?>
 
