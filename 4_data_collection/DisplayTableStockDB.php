@@ -37,7 +37,7 @@ $dbname = "StockDBPDO";
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT tickerid, stockname, date, closingprice, volume FROM Historic"); 
+    $stmt = $conn->prepare("SELECT tickerid, stockname, date, closingprice, volume FROM StockPrices"); 
     $stmt->execute();
 
     // set the resulting array to associative
