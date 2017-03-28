@@ -2,7 +2,7 @@
 <html>
 <body>
 
-<h1>My first PHP page</h1>
+<h1>Data display for StockPrices Table</h1>
 
 <?php
 
