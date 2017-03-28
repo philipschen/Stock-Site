@@ -7,8 +7,7 @@ This file will create the following Databases and Tables.
 
 1 - The Stock Database: StockDBPDO.
 
-2 - The StockPrices Table in Stock
-DBPDO which will contain the historic closing stock prices
+2 - The StockPrices Table in StockDBPDO which will contain the historic closing stock prices
       starting from 01/01/2016 and ending at the last close price.
 	a) The StockPrices Table will have the following fields:
 		tickerid: The Stock trading code used by the stock market.
