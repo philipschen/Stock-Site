@@ -2,11 +2,10 @@
 <html>
 <body>
 
-<h1>My first PHP page</h1>
-
-//This module will read from a CSV file and save the data into the Stock Table.
+<h1>Read Historic Stock Price Data</h1>
 
 <?php
+//This module will read from a CSV file and save the data into the Stock Table.
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -18,30 +17,24 @@ $stockname = array("Apple Computer, Inc.","American International Group Inc", "A
 
 $row = 1;
 for ($i = 0; $i < count($id); $i++){
-if (($handle = fopen("$id[$i].csv", "r")) !== FALSE) {
+if (($handle = fopen("/wamp64/www/Hist/$id[$i].csv", "r")) !== FALSE) {
+    echo "<p> Reading data from $id[$i].csv<br /></p>\n";
+    echo "<p> Updating Table StockPrices...<br /></p>\n";
     while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
         $num = count($data);
-        echo "<p> $num fields in line $row: <br /></p>\n";
         $row++;
-        for ($c=0; $c < $num; $c++) {
-            echo $data[$c] . "<br />\n";
-        }
-    $s = $data[0];
-    $dt = new DateTime($s);
-
-    $dat = $dt->format('Y-m-d');
-    
-    
+        $s = $data[0];
+        $dt = new DateTime($s);
+        $dat = $dt->format('Y-m-d');
     
     try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "INSERT INTO Historic (tickerid, stockname, date, closingprice, volume)
+    $sql = "INSERT INTO StockPrices (tickerid, stockname, date, closingprice, volume)
     VALUES ('$id[$i]', '$stockname[$i]', '$dat', $data[1], $data[5])";
     // use exec() because no results are returned
     $conn->exec($sql);
-    echo "New record created successfully";
     }
 catch(PDOException $e)
     {
@@ -51,9 +44,11 @@ catch(PDOException $e)
 $conn = null;
 
     }
+    echo "<p> Update Complete<br /></p>\n";
     fclose($handle);
 }
 }
+echo "<p> Stock Prices Update Completed<br /></p>\n";
 ?>
 
 </body>
