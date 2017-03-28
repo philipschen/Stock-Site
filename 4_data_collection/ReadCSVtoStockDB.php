@@ -10,6 +10,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "StockDBPDO";
+$path = "/wamp64/www/Hist";
 $id = array("AAPL", "AIG", "AMD", "AZO", "BP", "CI", "DB", "EA", "F", "FB", "FDX");
 $stockname = array("Apple Computer, Inc.","American International Group Inc", "Advanced Micro Devices, Inc.",
 	"AutoZone, Inc.", "BP plc (ADR)", "CIGNA Corporation", "Deutsche Bank AG (USA)", "Electronic Arts Inc.",
@@ -17,7 +18,7 @@ $stockname = array("Apple Computer, Inc.","American International Group Inc", "A
 
 $row = 1;
 for ($i = 0; $i < count($id); $i++){
-if (($handle = fopen("/wamp64/www/Hist/$id[$i].csv", "r")) !== FALSE) {
+if (($handle = fopen("$path/$id[$i].csv", "r")) !== FALSE) {
     echo "<p> Reading data from $id[$i].csv<br /></p>\n";
     echo "<p> Updating Table StockPrices...<br /></p>\n";
     while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
