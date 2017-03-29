@@ -33,7 +33,7 @@ This file will create the following Databases and Tables.
 		password: The password chosen by the user, this will be encrypted for security reasons.
 
 Upon Running this file a page containing a list of messages will be displayed.
-Each message will correlate to each of the previous 6 points.
+Each message will correlate to each of the previous 4 points.
 
 WARNING: Do not use the next File unless you are absolutely certain of what it does.
 	If so, do this at your own risk, as this file will wipe out ALL of your databases.
@@ -56,18 +56,14 @@ In all these cases the Databases will be destroyed and then recreated and repopu
 Upon Running this file a page containing a list of messages will be displayed.
 Each message will correlate to each of the Databases being destroyed.
 
+===================================================================================
+
+
 The ReadCSVtoStockDB.php File:
 
 This file will read Historic Price data from multiple Comma Separated Values(CSV) files and save those records to the StockPrices Table.
 
 The CSV files are placed in a subfolder called Hist.
-
-
-===================================================================================
-Program Run Order:
-CreateDB.php
-ReadCSVtoStockDB.php
-CreateTestPortfolioUsers.php
 
 WARNING:
 You will have to edit the $path variable to reflect the location of the CSV files in your particular installation for the file to execute properly.
@@ -75,9 +71,21 @@ You will have to edit the $path variable to reflect the location of the CSV file
 Upon Running this file a page containing a list of messages will be displayed.
 Each message will correlate to each of the input files being processed.
 
+===================================================================================
+
 The DisplayTableStockDB.php File:
 
 This file will display the contents of the StockPrices Table.
 
 Upon Running this file the StockPrices table will be displayed on a webpage.
+
+===================================================================================
+
+Program Run Order:
+CreateDB.php
+ReadCSVtoStockDB.php
+CreateTestPortfolioUsers.php
+
+
+
 
