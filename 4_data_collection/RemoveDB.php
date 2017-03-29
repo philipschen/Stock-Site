@@ -10,7 +10,8 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "StockDBPDO";
-
+	
+// This statement will delete the entire database.
 try {
     $conn = new PDO("mysql:host=$servername", $username, $password);
     // set the PDO error mode to exception
@@ -18,6 +19,7 @@ try {
     $sql = "DROP DATABASE $dbname";
     // use exec() because no results are returned
     $conn->exec($sql);
+	// This will display a success message in case the transaction is succesful.
     echo "Database $dbname removed successfully<br>";
 	
     }
