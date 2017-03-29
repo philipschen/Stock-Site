@@ -83,6 +83,16 @@ Upon Running this file the StockPrices table will be displayed on a webpage.
 
 ===================================================================================
 
+The CreateTestPortfolioUsers.php File:
+
+This file will save some predefined user records into the Users Table.
+This file will also save some predefined portfolio records into the MyPortfolio Table.
+
+Upon Running this file a page containing a list of messages will be displayed.
+Each message will correlate to each of the tables being processed.
+
+===================================================================================
+
 Program Run Order:
 CreateDB.php
 ReadCSVtoStockDB.php
