@@ -12,6 +12,7 @@ $password = "";
 $dbname = "StockDBPDO";
 $tablename = "StockPrices";
 
+    //This will create the StockDBPDO Database.
 try {
     $conn = new PDO("mysql:host=$servername", $username, $password);
     // set the PDO error mode to exception
@@ -19,12 +20,14 @@ try {
     $sql = "CREATE DATABASE $dbname";
     // use exec() because no results are returned
     $conn->exec($sql);
+    // This will display a success message in case the transaction is succesful.
     echo "Database $dbname created successfully<br>";
 
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
+
+    //This will create the StockPrices Table.
     $sql = "CREATE TABLE $tablename (
     tickerid VARCHAR(5) NOT NULL, 
     stockname VARCHAR(255) NOT NULL,
@@ -35,6 +38,7 @@ try {
 
     // use exec() because no results are returned
     $conn->exec($sql);
+    // This will display a success message in case the transaction is succesful.
     echo "Table $tablename created successfully<br>";	
     }
 catch(PDOException $e)
@@ -47,6 +51,7 @@ catch(PDOException $e)
 //$dbname = "MyPortfolioDBPDO";
 $tablename = "MyPortfolio";
 
+    //This will create the MyPortfolio Table.
 try {
     // sql to create table
     $sql = "CREATE TABLE $tablename (
@@ -59,6 +64,7 @@ try {
 
     // use exec() because no results are returned
     $conn->exec($sql);
+    // This will display a success message in case the transaction is succesful.
     echo "Table $tablename created successfully<br>";	
     }
 catch(PDOException $e)
@@ -71,6 +77,7 @@ catch(PDOException $e)
 //$dbname = "UserDBPDO";
 $tablename = "Users";
 
+    // This will create the Users Table
 try {
     // sql to create table
     $sql = "CREATE TABLE $tablename (
@@ -83,6 +90,7 @@ try {
 
     // use exec() because no results are returned
     $conn->exec($sql);
+    // This will display a success message in case the transaction is succesful.
     echo "Table $tablename created successfully<br>";	
     }
 catch(PDOException $e)
