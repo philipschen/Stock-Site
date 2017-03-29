@@ -30,6 +30,7 @@ try {
     VALUES ('user2', 'user2', 'John', 'Cena', 'test1')";
     // use exec() because no results are returned
     $conn->exec($sql);
+    // This will display a success message in case the transaction is succesful.
     echo "Finished creating users";
 } catch (PDOException $e) {
     echo $sql . "<br>" . $e->getMessage();
@@ -67,6 +68,7 @@ for ($i = 0; $i < count($id); $i++) {
 }
 
 }
+    // This will display a success message in case the transaction is succesful.
 echo "<p> Stock Prices Update Completed<br /></p>\n";
 ?>
 
