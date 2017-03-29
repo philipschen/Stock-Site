@@ -35,6 +35,8 @@ This file will create the following Databases and Tables.
 Upon Running this file a page containing a list of messages will be displayed.
 Each message will correlate to each of the previous 4 points.
 
+===================================================================================
+
 WARNING: Do not use the next File unless you are absolutely certain of what it does.
 	If so, do this at your own risk, as this file will wipe out ALL of your databases.
 
