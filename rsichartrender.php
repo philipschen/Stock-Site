@@ -17,7 +17,7 @@ if ($conn->connect_error) {
 }
 //echo "Connected successfully";
 
-$sql = "SELECT closingprice FROM historic";
+$sql = "SELECT closingprice FROM stockprices WHERE tickerid = 'AAPL'";
 if ($conn->query($sql) === TRUE) {
 } else {
     //echo "Error: " . $sql . "<br>" . $conn->error;
@@ -94,11 +94,15 @@ $myData = new pData();
 $myData->addPoints($rsi, "RSI");
 $myData->addPoints($r1, "dat2");
 $myData->addPoints($r2, "sat3");
-$myImage = new pImage(500, 300, $myData);
+$myImage = new pImage(700, 400, $myData);
 $myImage->setFontProperties(array(
     "FontName" => "pChart2.1.4/fonts/GeosansLight.ttf",
     "FontSize" => 10));
-$myImage->setGraphArea(25,25, 475,275);
+$myImage->drawText(300,40,"RSI Graph",array("FontSize"=>20,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE));
+$myImage->drawText(350,350,"Last 100 days",array("FontSize"=>20,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE));
+$myImage->drawText(40,200,"RSI",array("FontSize"=>20, "Angle" => 90,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE));
+$myImage->drawText(60,360,"",array("FontSize"=>20,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE));
+$myImage->setGraphArea(70,80, 600,300);
 
 $AxisBoundaries = array(0=>array("Min"=>0,"Max"=>100));
 $labelskip = 9/1; // values = 1000, hours = 24

@@ -42,28 +42,17 @@ catch(PDOException $e)
     echo $sql . "<br>" . $e->getMessage();
     }
 
-$conn = null;
+//$conn = null;
 
-$dbname = "MyPortfolioDBPDO";
+//$dbname = "MyPortfolioDBPDO";
 $tablename = "MyPortfolio";
 
 try {
-    $conn = new PDO("mysql:host=$servername", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "CREATE DATABASE $dbname";
-    // use exec() because no results are returned
-    $conn->exec($sql);
-    echo "Database $dbname created successfully<br>";
-
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
     // sql to create table
     $sql = "CREATE TABLE $tablename (
     userid VARCHAR(16) NOT NULL, 
     tickerid VARCHAR(5) NOT NULL,
+    stockname VARCHAR(100),
     earningspershare DECIMAL(11,6),
     dividends DECIMAL(11,6)
     )";
@@ -77,24 +66,12 @@ catch(PDOException $e)
     echo $sql . "<br>" . $e->getMessage();
     }
 
-$conn = null;
+//$conn = null;
 
-$dbname = "UserDBPDO";
+//$dbname = "UserDBPDO";
 $tablename = "Users";
 
 try {
-    $conn = new PDO("mysql:host=$servername", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "CREATE DATABASE $dbname";
-    // use exec() because no results are returned
-    $conn->exec($sql);
-    echo "Database $dbname created successfully<br>";
-
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
     // sql to create table
     $sql = "CREATE TABLE $tablename (
     userid VARCHAR(16) NOT NULL, 

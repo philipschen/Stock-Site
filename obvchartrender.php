@@ -17,7 +17,7 @@ if ($conn->connect_error) {
 }
 //echo "Connected successfully";
 
-$sql = "SELECT closingprice, volume FROM historic";
+$sql = "SELECT closingprice, volume FROM stockprices WHERE tickerid = 'AAPL'";
 if ($conn->query($sql) === TRUE) {
     //echo "DATA OBTAINED successfully";
 } else {
@@ -73,11 +73,15 @@ for ($i = 1; $i < count($volume)-1; $i++) {
 $myDataset = $obv;
 $myData = new pData();
 $myData->addPoints($myDataset);
-$myImage = new pImage(500, 300, $myData);
+$myImage = new pImage(700, 400, $myData);
 $myImage->setFontProperties(array(
     "FontName" => "pChart2.1.4/fonts/GeosansLight.ttf",
     "FontSize" => 10));
-$myImage->setGraphArea(50,50, 450,250);
+$myImage->drawText(300,40,"OBV Graph",array("FontSize"=>20,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE));
+$myImage->drawText(400,350,"Last 100 days",array("FontSize"=>20,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE));
+$myImage->drawText(40,200,"Volume (thousands)",array("FontSize"=>20, "Angle" => 90,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE));
+$myImage->drawText(60,360,"",array("FontSize"=>20,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE));
+$myImage->setGraphArea(100,80, 600,300);
 
 $labelskip = 9/1; // values = 1000, hours = 24
 $scaleSettings = array("LabelSkip"=>$labelskip);

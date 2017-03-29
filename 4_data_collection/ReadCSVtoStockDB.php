@@ -10,7 +10,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "StockDBPDO";
-$path = "/wamp64/www/Hist";
+$path = "Hist";
 $id = array("AAPL", "AIG", "AMD", "AZO", "BP", "CI", "DB", "EA", "F", "FB", "FDX");
 $stockname = array("Apple Computer, Inc.","American International Group Inc", "Advanced Micro Devices, Inc.",
 	"AutoZone, Inc.", "BP plc (ADR)", "CIGNA Corporation", "Deutsche Bank AG (USA)", "Electronic Arts Inc.",
