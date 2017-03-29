@@ -37,7 +37,7 @@ try {
 }
 $conn = null;
 
-
+// Create portfolios
 $row = 1;
 for ($i = 0; $i < count($id); $i++) {
     try {

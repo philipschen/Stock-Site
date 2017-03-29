@@ -78,8 +78,7 @@ if ($result->num_rows > 0) {
 }
 $conn->close();
 
-
-
+// Goes to prediction page
 if($_SERVER["REQUEST_METHOD"] == "GET"){
     echo "got here";
     for ($i = 0; $i < count($tickers); $i++) {
@@ -90,6 +89,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
     }
 }
 
+// Format Portfolio Table
 echo "<table>
 <tr>
 <th>Ticker</th>

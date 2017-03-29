@@ -49,7 +49,7 @@ if ($result->num_rows > 0) {
 }
 $conn->close();
 
-
+// Obtain This many data points for RSI calculation.
 $timecount = 100;
 for ($i = count($volume1)-1; $i > 0 ; $i--) {
     if ($timecount >= 0){
@@ -63,7 +63,7 @@ for ($i = count($volume1)-1; $i > 0 ; $i--) {
 
 
 
-// OBV ALGO
+// OBV Algorithm
 $obv = array();
 array_push($obv,0.0);
 

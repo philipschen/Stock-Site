@@ -108,6 +108,7 @@ if (true){
     else
         echo '<div>RSI Forecast: hold</div>';
 }
+
 //Pattern Matching
 if (true){
     echo '<h3>Pattern Matching</h3>';
@@ -219,6 +220,7 @@ if (true){
     iscup($m);
 }
 
+// RSI and OBV graphs
 echo '<img src="rsichartrender.php" alt="Failed RSI">';
 echo '<img src="obvchartrender.php" alt="Failed OBV">';
 

@@ -41,7 +41,7 @@ $conn->close();
 
 
 
-// RSI ALGO
+// RSI Algorithm
 $gl = array();
 $tag = 0.0;
 $tal = 0.0;
@@ -50,11 +50,12 @@ $rsi = array();
 $r1 = array();
 $r2 = array();
 
-//gl
+// Calculate gains and losses
 for ($i = 1; $i <= count($temp)-1; $i++) {
     array_push($gl, $temp[$i]-$temp[$i-1]);
 }
-//rs
+
+// Calculate RS
 for ($i = 14; $i < count($gl); $i++) {
     $tag = 0;
     $tal = 0;
@@ -72,12 +73,8 @@ for ($i = 14; $i < count($gl); $i++) {
     else
         array_push($rs, $tag/$tal);
 }
-//rsi
-/*
-for ($i = 1; $i <= count($rs); $i++) {
-    array_push($rsi, 100 - 100 / (1 + $rs[$i-1]));
-}
-*/
+
+// Calculate RSI
 $timecount = 100;
 for ($i = count($rs)-1; $i > 0 ; $i--) {
     if ($timecount >= 0){

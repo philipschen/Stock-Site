@@ -31,7 +31,7 @@ if ($result->num_rows > 0) {
     }
 }
 
-
+// Check to see if password is correct
 if (!empty($_GET['username'])
     && !empty($_GET['password'])) {
 
