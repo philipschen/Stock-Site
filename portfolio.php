@@ -80,7 +80,7 @@ $conn->close();
 
 // Goes to prediction page
 if($_SERVER["REQUEST_METHOD"] == "GET"){
-    echo "got here";
+
     for ($i = 0; $i < count($tickers); $i++) {
         if(isset($_REQUEST[$tickers[$i]])){
             setcookie("cookiestock",$_GET[$tickers[$i]], time()+3600);
@@ -107,7 +107,7 @@ for ($i = 0; $i < count($tickers); $i++) {
     echo "</tr>";
 }
 echo "</table>";
-mysqli_close($con);
+
 ?>
 </form>
 
