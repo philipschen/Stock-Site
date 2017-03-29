@@ -3,6 +3,14 @@ require_once("pChart2.1.4/class/pData.class.php");
 require_once("pChart2.1.4/class/pDraw.class.php");
 require_once("pChart2.1.4/class/pImage.class.php");
 
+// Get which Stock
+$cookiestock = "";
+if (isset($_COOKIE["cookiestock"]))
+    $cookiestock = $_COOKIE["cookiestock"];
+else
+    $cookiestock = "AAPL";
+
+
 //Code for getting OBV data and displaying OBV graph.
 $servername = "localhost";
 $username = "root";
@@ -17,7 +25,7 @@ if ($conn->connect_error) {
 }
 //echo "Connected successfully";
 
-$sql = "SELECT closingprice, volume FROM stockprices WHERE tickerid = 'AAPL'";
+$sql ="SELECT stockname,closingprice, volume FROM stockprices WHERE tickerid = '".$cookiestock."'";
 if ($conn->query($sql) === TRUE) {
     //echo "DATA OBTAINED successfully";
 } else {

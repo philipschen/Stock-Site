@@ -29,7 +29,7 @@
 <br><a href="">Portfolio Summary</a> <a href="">TransactionHistory</a> <a href="">Watchlist</a>
 <br><a href="">Import Existing</a> <a href="">Friends List</a> <a href="">Chat Forums</a>
 <hr>
-
+<form method='GET'>
 
 <?php
 //Code for getting OBV data and displaying OBV graph.
@@ -78,9 +78,15 @@ if ($result->num_rows > 0) {
 }
 $conn->close();
 
-for ($i = 0; $i < count($tickers); $i++) {
-    if($_POST[$tickers[$i]]){
-        echo "clicked";
+
+
+if($_SERVER["REQUEST_METHOD"] == "GET"){
+    echo "got here";
+    for ($i = 0; $i < count($tickers); $i++) {
+        if(isset($_REQUEST[$tickers[$i]])){
+            setcookie("cookiestock",$_GET[$tickers[$i]], time()+3600);
+            echo '<meta HTTP-EQUIV="REFRESH" content="0; url=predictionpage.php">';
+        }
     }
 }
 
@@ -93,8 +99,8 @@ echo "<table>
 </tr>";
 for ($i = 0; $i < count($tickers); $i++) {
     echo "<tr>";
-    //echo "<td><form id ='".$tickers[$i]  ."' method='POST'><button type='submit' value = \"".$tickers[$i]."\">".$tickers[$i]."</button></form></td>";
-    echo "<td><a href='predictionpage.php'>".$tickers[$i]."</a></td>";
+    echo "<td><input type='submit' name='". $tickers[$i] ."' value = '".$tickers[$i]."'></td>";
+    //echo "<td><a href='predictionpage.php'>".$tickers[$i]."</a></td>";
     echo "<td>" . $tickname[$i] . "</td>";
     echo "<td>" . $tickearnings[$i] . "</td>";
     echo "<td>" . $tickdiv[$i] . "</td>";
@@ -103,5 +109,7 @@ for ($i = 0; $i < count($tickers); $i++) {
 echo "</table>";
 mysqli_close($con);
 ?>
+</form>
+
 </body>
 </html>

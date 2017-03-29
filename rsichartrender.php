@@ -3,6 +3,13 @@ require_once("pChart2.1.4/class/pData.class.php");
 require_once("pChart2.1.4/class/pDraw.class.php");
 require_once("pChart2.1.4/class/pImage.class.php");
 
+// Get which Stock
+$cookiestock = "";
+if (isset($_COOKIE["cookiestock"]))
+    $cookiestock = $_COOKIE["cookiestock"];
+else
+    $cookiestock = "AAPL";
+
 //Code for getting RSI data and displaying RSI graph.
 $servername = "localhost";
 $username = "root";
@@ -17,7 +24,7 @@ if ($conn->connect_error) {
 }
 //echo "Connected successfully";
 
-$sql = "SELECT closingprice FROM stockprices WHERE tickerid = 'AAPL'";
+$sql = "SELECT stockname,closingprice FROM stockprices WHERE tickerid = '".$cookiestock."'";
 if ($conn->query($sql) === TRUE) {
 } else {
     //echo "Error: " . $sql . "<br>" . $conn->error;

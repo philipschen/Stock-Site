@@ -15,6 +15,14 @@
 </html>
 
 <?php
+// Get which Stock
+$cookiestock = "";
+if (isset($_COOKIE["cookiestock"]))
+    $cookiestock = $_COOKIE["cookiestock"];
+else
+    $cookiestock = "AAPL";
+
+
 //RSI
 if (true){
     //Code for getting RSI data and displaying RSI graph.
@@ -31,7 +39,7 @@ if (true){
     }
 //echo "Connected successfully";
 
-    $sql = "SELECT stockname,closingprice FROM stockprices WHERE tickerid = 'AAPL'";
+    $sql = "SELECT stockname,closingprice FROM stockprices WHERE tickerid = '".$cookiestock."'";
     if ($conn->query($sql) === TRUE) {
     } else {
         //echo "Error: " . $sql . "<br>" . $conn->error;
