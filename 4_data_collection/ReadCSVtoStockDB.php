@@ -17,10 +17,13 @@ $stockname = array("Apple Computer, Inc.","American International Group Inc", "A
 	"Ford Motor Company", "Facebook Inc", "FedEx Corporation");
 
 $row = 1;
+	//for loop for processing all the CSV files.
 for ($i = 0; $i < count($id); $i++){
 if (($handle = fopen("$path/$id[$i].csv", "r")) !== FALSE) {
+	// This will display message indicating the current Database transaction.
     echo "<p> Reading data from $id[$i].csv<br /></p>\n";
     echo "<p> Updating Table StockPrices...<br /></p>\n";
+	//while loop used to read each CSV line.
     while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
         $num = count($data);
         $row++;
@@ -28,6 +31,7 @@ if (($handle = fopen("$path/$id[$i].csv", "r")) !== FALSE) {
         $dt = new DateTime($s);
         $dat = $dt->format('Y-m-d');
     
+	    //try statement to insert record into table.
     try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     // set the PDO error mode to exception
@@ -45,10 +49,12 @@ catch(PDOException $e)
 $conn = null;
 
     }
+	// This will display a success message in case the transaction is succesful.
     echo "<p> Update Complete<br /></p>\n";
     fclose($handle);
 }
 }
+	// This will display a success message in case the transaction is succesful.
 echo "<p> Stock Prices Update Completed<br /></p>\n";
 ?>
 
