@@ -93,11 +93,23 @@ Each message will correlate to each of the tables being processed.
 
 ===================================================================================
 
-Program Run Order:
-CreateDB.php
-ReadCSVtoStockDB.php
-CreateTestPortfolioUsers.php
+Normal Program Run Order:
 
+1. CreateDB.php
+2. ReadCSVtoStockDB.php
+3. CreateTestPortfolioUsers.php
 
+===================================================================================
 
+WARNING: Do not use the next sequence unless you are absolutely certain of what it does.
+	If so, do this at your own risk, as this sequence will wipe out ALL of your databases
+	before recreating and repopulating them.
 
+===================================================================================
+
+Quick Reset Program Run Order:
+
+1. RemoveDB.php
+2. CreateDB.php
+3. ReadCSVtoStockDB.php
+4. CreateTestPortfolioUsers.php
