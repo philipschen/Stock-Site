@@ -30,25 +30,28 @@ if ($result->num_rows > 0) {
         array_push($password,$row["password"]);
     }
 }
-
+if (isset($_REQUEST["register"]))
+    echo '<meta HTTP-EQUIV="REFRESH" content="0; url=registeruser.php">';
 // Check to see if password is correct
-if (!empty($_GET['username'])
-    && !empty($_GET['password'])) {
+else{
+    if (!empty($_GET['username'])
+        && !empty($_GET['password'])) {
 
-    $temp1 = 0;
-    for ($i = 0; $i < count($username); $i++){
-        if ($_GET['username'] == $username[$i] &&
-            $_GET['password'] == $password[$i]) {
+        $temp1 = 0;
+        for ($i = 0; $i < count($username); $i++){
+            if ($_GET['username'] == $username[$i] &&
+                $_GET['password'] == $password[$i]) {
 
-            $temp1 = 1;
+                $temp1 = 1;
 
-            setcookie("cookieid",$_GET['username'], time()+3600);
+                setcookie("cookieid",$_GET['username'], time()+3600);
 
-            echo '<meta HTTP-EQUIV="REFRESH" content="0; url=portfolio.php">';
+                echo '<meta HTTP-EQUIV="REFRESH" content="0; url=portfolio.php">';
+            }
         }
+        if ($temp1 == 0)
+            echo '<script>alert("Wrong Username or Password")</script>';
     }
-    if ($temp1 == 0)
-        echo '<script>alert("Wrong Username of Password")</script>';
 }
 
 $conn->close();
@@ -71,6 +74,8 @@ $conn->close();
             <input type="password" name="password"><br>
             <br>
             <input type="submit" value="Sign in!" name = "submit">
+
+            <input type="submit" value="Register" name = "register">
         </form>
     </div>
 
